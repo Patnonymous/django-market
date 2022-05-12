@@ -6,5 +6,5 @@ from . import views
 
 # Set the url patterns.
 urlpatterns = [
-    path('', views.index, name='index')
+    path('', views.IndexView.as_view(), name='index')
 ]
