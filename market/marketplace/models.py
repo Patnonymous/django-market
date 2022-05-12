@@ -27,8 +27,10 @@ class MarketItem(models.Model):
     item_price = models.DecimalField(max_digits=7, decimal_places=2, validators=[
                                      MinValueValidator(1)], default=1.00)
     item_quantity = models.PositiveIntegerField(default=1)
+    # Controls if an items quantity should be frozen, AKA infinite.
     item_freeze_quantity = models.BooleanField(default=False)
     item_category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
+    # Controls if an item is featured. Featured items show on the index page.
     item_is_featured = models.BooleanField(default=False)
     item_date_added = models.DateTimeField(default=datetime.now)
 
