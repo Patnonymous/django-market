@@ -1,0 +1,9 @@
+{% if items_index %}
+<ol>
+    {% for item in items_index %}
+    <li>{{item.item_name}}</li>
+    {% endfor %}
+</ol>
+{% else %}
+<h2>There are no items. Try checking back later.</h2>
+{% endif %}

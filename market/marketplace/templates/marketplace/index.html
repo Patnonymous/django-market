@@ -9,15 +9,8 @@
 </head>
 
 <body>
-    {% if featured_items_index %}
-    <ol>
-        {% for item in featured_items_index %}
-        <li>{{item.item_name}}</li>
-        {% endfor %}
-    </ol>
-    {% else %}
-    <h1>There are no featured items. Check back later.</h1>
-    {% endif %}
+    <h1>{{ page_header }}</h1>
+    {% include "./listings.html" %}
 
 </body>
 
