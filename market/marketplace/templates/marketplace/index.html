@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Index - Featured</title>
+</head>
+
+<body>
+    {% if featured_items_index %}
+    <ol>
+        {% for item in featured_items_index %}
+        <li>{{item.item_name}}</li>
+        {% endfor %}
+    </ol>
+    {% else %}
+    <h1>There are no featured items. Check back later.</h1>
+    {% endif %}
+
+</body>
+
+</html>
