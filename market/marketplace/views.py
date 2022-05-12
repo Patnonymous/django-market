@@ -8,6 +8,9 @@ from .models import MarketItem
 
 
 class IndexView(generic.ListView):
+    """
+    Display special admin featured items.
+    """
     template_name = 'marketplace/index.html'
     context_object_name = 'items_index'
 
@@ -21,6 +24,9 @@ class IndexView(generic.ListView):
 
 
 class ListingsView(generic.ListView):
+    """
+    Display all user items, AKA items that are not featured.
+    """
     template_name = 'marketplace/index.html'
     context_object_name = 'items_index'
 
@@ -31,6 +37,11 @@ class ListingsView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['page_header'] = 'User Market Listings'
         return context
+
+
+class ItemDetailView(generic.DetailView):
+    model = MarketItem
+    template_name = 'marketplace/item_detail.html'
 
 
 def index(request):

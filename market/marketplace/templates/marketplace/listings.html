@@ -1,7 +1,7 @@
 {% if items_index %}
 <ol>
     {% for item in items_index %}
-    <li>{{item.item_name}}</li>
+    <li><a href="{% url 'market:detail' item.id %}">{{item.item_name}}</a></li>
     {% endfor %}
 </ol>
 {% else %}
