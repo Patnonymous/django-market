@@ -40,3 +40,13 @@ class MarketItem(models.Model):
     class Meta:
         verbose_name = 'Market Item'
         verbose_name_plural = 'Market Items'
+
+    def available_for_purchase(self):
+        """
+        Items with quantity above zero are available for purchase,
+        else they are not available.
+        """
+        if self.item_quantity > 0:
+            return True
+        else:
+            return False
