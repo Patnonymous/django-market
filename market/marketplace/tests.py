@@ -24,9 +24,8 @@ def quick_create_cat():
     testing_category.save()
     return testing_category
 
+
 # Create your tests here.
-
-
 class MarketItemModelTests(TestCase):
     def test_available_to_purchase_zero_quantity(self):
         """
