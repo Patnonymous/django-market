@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "marketplace/base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketplace Index - Featured</title>
-</head>
+{% block title %}Marketplace - Featured{% endblock title %}
 
-<body>
-    <h1>{{ page_header }}</h1>
-    {% include "./listings.html" %}
-
-</body>
-
-</html>
+{% block content %}
+<h1>{{ page_header }}</h1>
+{% include "./listings.html" %}
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% load static %}
+<link rel="stylesheet" type="text/css"
+    href="{% static 'marketplace/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css' %}">
+<script src="{% static 'marketplace/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js' %}"></script>
+<link rel="icon" type="image/x-icon" href="{% static 'marketplace/favicon.png' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Marketplace Index{% endblock %}</title>
+</head>
+
+<body>
+    <div id="navbar">
+        {% block navbar %}
+        <h3>I am H3 inside the navbar block.</h3>
+
+        {% endblock navbar %}
+    </div>
+
+
+    <div id="content">
+        {% block content%} {% endblock content %}
+    </div>
+
+</body>
+
+</html>
