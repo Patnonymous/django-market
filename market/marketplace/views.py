@@ -11,8 +11,8 @@ class IndexView(generic.ListView):
     """
     Display special admin featured items.
     """
-    template_name = 'marketplace/index.html'
-    context_object_name = 'items_index'
+    template_name = 'marketplace/base_featured.html'
+    context_object_name = 'item_listings'
 
     def get_queryset(self):
         return MarketItem.objects.filter(item_is_featured=True).order_by('-item_date_added')
@@ -27,8 +27,8 @@ class ListingsView(generic.ListView):
     """
     Display all user items, AKA items that are not featured.
     """
-    template_name = 'marketplace/index.html'
-    context_object_name = 'items_index'
+    template_name = 'marketplace/base_user_listings.html'
+    context_object_name = 'item_listings'
 
     def get_queryset(self):
         return MarketItem.objects.filter(item_is_featured=False).order_by('-item_date_added')
