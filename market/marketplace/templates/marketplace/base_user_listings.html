@@ -3,6 +3,13 @@
 {% block title %}Marketplace - User Items{% endblock title %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
+<p>User is logged in as: {{ user.username }}</p>
+{% else %}
+<p>The user is not logged in.</p>
+{% endif %}
+
 <h1>User Provided Items</h1>
 {% include "./listings.html" %}
 {% endblock content %}
