@@ -1,12 +1,12 @@
-from django import forms
+# Imports.
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import generic
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+# Import custom models.
 from .models import MarketItem
 from .forms import RegisterForm
 
@@ -47,6 +47,10 @@ class ListingsView(generic.ListView):
 class ItemDetailView(generic.DetailView):
     model = MarketItem
     template_name = 'marketplace/item_detail.html'
+
+
+def account_details(request):
+    return render(request, template_name='marketplace/base_account.html')
 
 
 def register_request(request):
