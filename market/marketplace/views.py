@@ -1,12 +1,17 @@
-from django.shortcuts import render
+from django import forms
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import generic
+from django.contrib import messages
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 from .models import MarketItem
+from .forms import RegisterForm
+
 
 # Create your views here.
-
-
 class IndexView(generic.ListView):
     """
     Display special admin featured items.
@@ -42,6 +47,20 @@ class ListingsView(generic.ListView):
 class ItemDetailView(generic.DetailView):
     model = MarketItem
     template_name = 'marketplace/item_detail.html'
+
+
+def register_request(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(
+                request, 'Registration successfull. Welcome to market.')
+            return redirect('market:index')
+        messages.error(request, 'Registration error. Invalid information.')
+    form = RegisterForm()
+    return render(request=request, template_name='registration/register.html', context={'register_form': form})
 
 
 def index(request):
