@@ -18,3 +18,11 @@ class RegisterForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class EditAccountDetailsForm(forms.ModelForm):
+    email = forms.EmailField(label='New Email', required=True)
+
+    class Meta:
+        model = User
+        fields = ['email']

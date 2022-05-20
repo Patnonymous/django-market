@@ -9,4 +9,6 @@
     {{ form.as_p }}
     <button type="submit">Log In</button>
 </form>
+
+<p>Are you a new user? <a href="{% url 'market:register' %}">Create an account today!</a></p>
 {% endblock content %}

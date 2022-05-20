@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 # Import custom models.
 from .models import MarketItem
-from .forms import RegisterForm
+from .forms import RegisterForm, EditAccountDetailsForm
 
 
 # Create your views here.
@@ -54,17 +54,51 @@ def account_details(request):
 
 
 def register_request(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            messages.success(
-                request, 'Registration successfull. Welcome to market.')
-            return redirect('market:index')
-        messages.error(request, 'Registration error. Invalid information.')
-    form = RegisterForm()
-    return render(request=request, template_name='registration/register.html', context={'register_form': form})
+    """
+    Register a new account using the form data provided in the request.
+    """
+    print('\nAccount is registering.')
+    form = RegisterForm(request.POST or None)
+    if form.is_valid():
+        print('The form is valid. Saving new user.')
+        user = form.save()
+        login(request, user)
+        return redirect('market:index')
+    print('Returning render now.')
+    return render(request, 'registration/register.html', context={'register_form': form})
+
+    # if request.method == 'POST':
+    #     form = RegisterForm(request.POST)
+    #     if form.is_valid():
+    #         user = form.save()
+    #         login(request, user)
+    #         return redirect('market:index')
+    #     else:
+    #         print(form.errors)
+    # form = RegisterForm()
+    # return render(request, template_name='registration/register.html', context={'register_form': form})
+
+
+def edit_account_details(request):
+    print("\nEditing account details.")
+    # Process forms data on POST.
+    form = EditAccountDetailsForm(request.POST or None, instance=request.user)
+    if form.is_valid():
+        form.save()
+        return redirect('market:account')
+    return render(request, 'marketplace/base_account_edit.html', {'edit_account_form': form})
+
+    # if request.method == 'POST':
+    #     print("Request is post.")
+    #     form = EditAccountDetailsForm(request.POST)
+    #     print(form)
+    #     if form.is_valid():
+    #         print("Form is valid.")
+    #         return redirect('market:account')
+    # else:
+    #     print("Invalid form.")
+    #     form = EditAccountDetailsForm()
+    # return render(request, 'marketplace/base_account_edit.html', {'edit_account_form': form})
 
 
 def index(request):
