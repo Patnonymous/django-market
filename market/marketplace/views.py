@@ -2,9 +2,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import generic
+from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from django.contrib.auth.views import PasswordChangeView
 
 # Import custom models.
 from .models import MarketItem
@@ -57,14 +59,11 @@ def register_request(request):
     """
     Register a new account using the form data provided in the request.
     """
-    print('\nAccount is registering.')
     form = RegisterForm(request.POST or None)
     if form.is_valid():
-        print('The form is valid. Saving new user.')
         user = form.save()
         login(request, user)
         return redirect('market:index')
-    print('Returning render now.')
     return render(request, 'registration/register.html', context={'register_form': form})
 
     # if request.method == 'POST':
@@ -80,7 +79,6 @@ def register_request(request):
 
 
 def edit_account_details(request):
-    print("\nEditing account details.")
     # Process forms data on POST.
     form = EditAccountDetailsForm(request.POST or None, instance=request.user)
     if form.is_valid():
@@ -99,6 +97,18 @@ def edit_account_details(request):
     #     print("Invalid form.")
     #     form = EditAccountDetailsForm()
     # return render(request, 'marketplace/base_account_edit.html', {'edit_account_form': form})
+
+
+class ChangePasswordView(PasswordChangeView):
+    template_name = 'registration/change_password.html'
+    success_url = 'account'
+
+# def change_password(request):
+#     form = ChangePasswordForm(request.POST or None)
+#     if form.is_valid():
+#         form.save()
+#         return redirect('market:account')
+#     return render(request, 'registration/change_password.html', {'change_password_form': form})
 
 
 def index(request):

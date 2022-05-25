@@ -3,8 +3,8 @@
 {% block title %}Account{% endblock title %}
 
 {% block content %}
-<h1>{{user.username}}</h1>
-<h4 class="mb-4">Hello, first last</h4>
+<h1>Account</h1>
+<h4 class="mb-4">Hello, {{user.username}}</h4>
 
 <div>
     {% if user.first_name %}
@@ -34,6 +34,6 @@
 
 <div>
     <p><a href="{% url 'market:edit-account' %}">Edit Account Information</a></p>
-    <p><a href="">Change Password</a></p>
+    <p><a href="{% url 'market:change-password' %}">Change Password</a></p>
 </div>
 {% endblock content %}
