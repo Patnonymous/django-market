@@ -51,8 +51,12 @@ class ItemDetailView(generic.DetailView):
     template_name = 'marketplace/item_detail.html'
 
 
+def add_new_item(request):
+    return render(request, 'marketplace/base_add_item.html')
+
+
 def account_details(request):
-    return render(request, template_name='marketplace/base_account.html')
+    return render(request, 'marketplace/base_account.html')
 
 
 def register_request(request):
